@@ -1,4 +1,4 @@
-package src.test.java.fr.isen.checkers.core;
+package fr.isen.checkers.core;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,13 +14,13 @@ public class CheckersGameTest {
 
     @Before
     public void init(){
-        //checkersGame =  new CheckersGame();
-        assertThat(true).isEqualTo(true);
+        checkersGame =  new CheckersGame();
     }
 
     @Test
     public void gameIsInitTest(){
-        //checkersGame.init();
+        checkersGame.init();
+        
     }
 
     @Test
