@@ -3,22 +3,22 @@
   <modelVersion>4.0.0</modelVersion>
 
 
-  <groupId>org.dmetzler.isen.jee</groupId>
-  <artifactId>jee-bootstrap-parent</artifactId>
+  <groupId>fr.isen.checkers</groupId>
+  <artifactId>jee-checkers-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>Puissance 4 :: parent</name>
+  <name>Checkers :: parent</name>
   <packaging>pom</packaging>
   <description></description>
 
 
   <properties>
-    <java.version>1.7</java.version>
+    <java.version>1.8</java.version>
     <jee.version>7.0</jee.version>
     <selenium.version>2.44.0</selenium.version>
   </properties>
 
   <modules>
-    <module>jee-bootstrap-core</module>
+    <module>jee-checkers-core</module>
     <!-- module>jee-bootstrap-jpa</module>
     <module>jee-bootstrap-web</module>
     <module>jee-bootstrap-rest</module -->
