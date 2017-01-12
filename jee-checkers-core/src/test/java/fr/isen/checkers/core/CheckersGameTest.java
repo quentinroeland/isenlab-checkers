@@ -1,5 +1,6 @@
 package fr.isen.checkers.core;
 
+import fr.isen.checkers.core.cell.CellColor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,18 +15,20 @@ public class CheckersGameTest {
 
     @Before
     public void init(){
-        checkersGame =  new CheckersGame();
+        checkersGame =  new CheckersGameImpl();
     }
 
     @Test
     public void gameIsInitTest(){
         checkersGame.init();
-        
+        assertThat(checkersGame.getBoardCell(0,0).equals(null));
+        assertThat(checkersGame.getBoardCell(9,9).equals(null));
+        assertThat(checkersGame.getBoardCell(10,10).equals(null));
     }
 
     @Test
     public void movePawnTest(){
-
+        //checkersGame.movePawn();
     }
 
     @Test

@@ -1,6 +1,6 @@
-package src.main.java.fr.isen.checkers.core.board;
+package fr.isen.checkers.core.board;
 
-import src.main.java.fr.isen.checkers.core.cell.Cell;
+import fr.isen.checkers.core.cell.Cell;
 
 import java.util.ArrayList;
 import java.util.List;

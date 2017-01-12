@@ -1,4 +1,4 @@
-package src.main.java.fr.isen.checkers.core.cell;
+package fr.isen.checkers.core.cell;
 
 /**
  * Created by Quentin on 09/01/2017.

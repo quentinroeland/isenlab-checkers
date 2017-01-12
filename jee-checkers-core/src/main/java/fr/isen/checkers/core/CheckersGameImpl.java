@@ -1,7 +1,7 @@
 package fr.isen.checkers.core;
 
-import src.main.java.fr.isen.checkers.core.board.Board;
-import src.main.java.fr.isen.checkers.core.cell.Cell;
+import fr.isen.checkers.core.board.Board;
+import fr.isen.checkers.core.cell.Cell;
 
 import java.util.List;
 
@@ -32,8 +32,6 @@ public class CheckersGameImpl implements CheckersGame {
 
     }
 
-
-
     public void setupWhitePawn(){
 
     }
@@ -42,6 +40,16 @@ public class CheckersGameImpl implements CheckersGame {
 
     }
     public void displayGameBoard() {
+    }
+
+    @Override
+    public void init() {
+
+    }
+
+    @Override
+    public Cell getBoardCell(int row, int col) {
+        return null;
     }
 
     public PawnColor getCurrentColor(){

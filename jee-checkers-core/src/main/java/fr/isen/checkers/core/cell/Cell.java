@@ -1,22 +1,22 @@
-package src.main.java.fr.isen.checkers.core.cell;
+package fr.isen.checkers.core.cell;
 
-import src.main.java.fr.isen.checkers.core.PawnColor;
+import fr.isen.checkers.core.PawnColor;
 
 /**
  * Created by Quentin on 09/01/2017.
  */
 public class Cell {
 
-    private Boolean isFree;
+    private CellContent content;
     private CellColor color;
 
-    public Cell(CellColor cc){
-        this.color = cc;
+    public Cell(CellColor color){
+        this.color = color;
     }
 
-    public Cell(CellColor cc, PawnColor pc){
-        this.color = cc;
-        this.isFree = false;
+    public Cell(CellColor color, CellContent content){
+        this.color = color;
+        this.content = content;
     }
 
     public void setColor(CellColor cc){
@@ -27,16 +27,11 @@ public class Cell {
         return this.color;
     }
 
-    public void setIsFree(boolean newFreeState){
-        this.isFree = newFreeState;
+    public void setContent(CellContent content) {
+        this.content = content;
     }
 
-    public boolean getIsFree(){
-        return this.isFree;
+    public CellContent getContent() {
+        return content;
     }
-
-    public void changeFreeState(){
-        this.isFree = !this.isFree;
-    }
-
 }
