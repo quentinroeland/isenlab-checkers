@@ -10,4 +10,8 @@ public class CellContent {
     private CellContentType type;
     private PawnColor color;
 
+    public CellContent(CellContentType type, PawnColor color) {
+        this.type = type;
+        this.color = color;
+    }
 }
