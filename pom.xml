@@ -211,8 +211,8 @@
       </dependency>
 
       <dependency>
-        <groupId>org.dmetzler.isen.jee-bootstrap</groupId>
-        <artifactId>jee-bootstrap-core</artifactId>
+        <groupId>fr.isen.jee-checkers</groupId>
+        <artifactId>jee-checkers-core</artifactId>
         <version>${project.version}</version>
       </dependency>
       <!-- dependency>
