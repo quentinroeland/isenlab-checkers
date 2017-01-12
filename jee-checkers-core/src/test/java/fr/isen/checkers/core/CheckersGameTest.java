@@ -16,12 +16,11 @@ public class CheckersGameTest {
 
     @Before
     public void init(){
-        checkersGame =  new CheckersGameImpl();
+        this.checkersGame =  new CheckersGameImpl();
     }
 
     @Test
     public void gameIsInitTest(){
-        checkersGame.init();
         assertThat(checkersGame.getBoardCell(0,0).equals(null));
         assertThat(checkersGame.getBoardCell(9,9).equals(null));
         assertThatExceptionOfType(BoardException.class).isThrownBy(() -> checkersGame.getBoardCell(10,10));

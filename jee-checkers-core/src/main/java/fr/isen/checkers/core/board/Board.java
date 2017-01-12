@@ -20,24 +20,20 @@ public class Board {
     private List<List<Cell>> board;
 
     public Board(){
-        new Board(10, 10);
-    }
-
-    public Board(Integer numberOfRows, Integer numberOfCols){
-        this.rows = numberOfRows;
-        this.cols = numberOfCols;
-        initGameBoard();
+        this.rows = 10;
+        this.cols = 10;
+        this.initGameBoard();
     }
 
     public void initGameBoard() {
-        createBoard();
-        setupPawn();
+        this.createBoard();
+        this.setupPawn();
     }
 
     public void createBoard(){
         this.board = new ArrayList<List<Cell>>(this.rows);
         for (Integer i = 0; i < this.rows; i++) {
-            board.add(new ArrayList<Cell>(this.cols));
+            this.board.add(new ArrayList<Cell>(this.cols));
         }
     }
 
@@ -48,9 +44,9 @@ public class Board {
                 CellColor cellColor = this.getInitialCellColor(row, col);
                 CellContent cellContent = this.getInitialCellContent(row, col);
                 Cell currentCell = new Cell(cellColor, cellContent);
-                currentRow.set(col, currentCell);
+                currentRow.add(currentCell);
             }
-            board.set(row, currentRow);
+            this.board.set(row, currentRow);
         }
     }
 
@@ -104,13 +100,6 @@ public class Board {
                 return CellColor.Dark;
             }
         }
-    }
-
-    public void setupWhitePawn(){
-
-    }
-
-    public void setupBlackPawn(){
     }
 
     public Cell getCell(int row, int col) throws BoardException {

@@ -19,26 +19,19 @@ public class CheckersGameImpl implements CheckersGame {
     private Board board;
 
     public CheckersGameImpl(){
-        this.board = new Board();
-        this.initGameBoard();
+        Board b = new Board();
+        this.board = b;
     }
 
-
     public void initGameBoard() {
-        this.board.initGameBoard();
+        //this.board.initGameBoard();
     }
 
     public void play(PawnColor pc, int col, int row) {
 
     }
 
-    public void setupWhitePawn(){
 
-    }
-
-    public void setupBlackPawn(){
-
-    }
     public void displayGameBoard() {
     }
 
