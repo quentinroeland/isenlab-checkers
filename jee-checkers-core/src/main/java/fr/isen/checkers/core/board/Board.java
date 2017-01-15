@@ -20,8 +20,12 @@ public class Board {
     private List<List<Cell>> board;
 
     public Board(){
-        this.rows = 10;
-        this.cols = 10;
+        this(10, 10);
+    }
+
+    public Board(Integer numberOfRows, Integer numberOfCols){
+        this.rows = numberOfRows;
+        this.cols = numberOfCols;
         this.initGameBoard();
     }
 
@@ -55,18 +59,18 @@ public class Board {
         PawnColor pawnColor;
         Integer rowModule = row % 2;
         Integer colModule = col % 2;
-        if(row < 4 && row > this.rows - 1 - 4 ) {
+        if(row < 4 || row > this.rows - 1 - 4 ) {
             if (rowModule == 0) {
                 if (colModule == 0) {
-                    cellContentType = CellContentType.PAWN;
-                } else {
                     cellContentType = CellContentType.EMPTY;
+                } else {
+                    cellContentType = CellContentType.PAWN;
                 }
             } else {
                 if (colModule == 0) {
-                    cellContentType = CellContentType.EMPTY;
-                } else {
                     cellContentType = CellContentType.PAWN;
+                } else {
+                    cellContentType = CellContentType.EMPTY;
                 }
             }
         }else{
@@ -75,7 +79,7 @@ public class Board {
         if(row <4 && cellContentType != CellContentType.EMPTY){
             pawnColor = PawnColor.BLACK;
         }else{
-            if(row >this.rows - 1 - 4 ){
+            if(row >this.rows - 1 - 4 && cellContentType != CellContentType.EMPTY ){
                 pawnColor = PawnColor.WHITE;
             }else{
                 pawnColor = PawnColor.NULL;
@@ -89,15 +93,15 @@ public class Board {
         Integer colModule = col % 2;
         if(rowModule == 0){
             if(colModule == 0){
-                return CellColor.Dark;
-            }else{
                 return CellColor.Light;
+            }else{
+                return CellColor.Dark;
             }
         }else{
             if(colModule == 0){
-                return CellColor.Light;
-            }else{
                 return CellColor.Dark;
+            }else{
+                return CellColor.Light;
             }
         }
     }

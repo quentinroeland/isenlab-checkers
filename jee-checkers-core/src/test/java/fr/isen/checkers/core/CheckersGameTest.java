@@ -1,6 +1,10 @@
 package fr.isen.checkers.core;
 
 import fr.isen.checkers.core.board.BoardException;
+import fr.isen.checkers.core.cell.Cell;
+import fr.isen.checkers.core.cell.CellColor;
+import fr.isen.checkers.core.cell.CellContent;
+import fr.isen.checkers.core.cell.CellContentType;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -21,8 +25,16 @@ public class CheckersGameTest {
 
     @Test
     public void gameIsInitTest(){
-        assertThat(checkersGame.getBoardCell(0,0).equals(null));
-        assertThat(checkersGame.getBoardCell(9,9).equals(null));
+        Cell firstCell = checkersGame.getBoardCell(0, 1);
+        assertThat(firstCell.getColor().equals(CellColor.Dark));
+        CellContent firstCellContent = firstCell.getContent();
+        assertThat(firstCellContent.getType().equals(CellContentType.PAWN));
+        assertThat(firstCellContent.getColor().equals(PawnColor.BLACK));
+        Cell lastCell = checkersGame.getBoardCell(9, 9);
+        assertThat(lastCell.getColor().equals(CellColor.Light));
+        CellContent lastCellContent = firstCell.getContent();
+        assertThat(lastCellContent.getType().equals(CellContentType.EMPTY));
+        assertThat(lastCellContent.getColor().equals(PawnColor.NULL));
         assertThatExceptionOfType(BoardException.class).isThrownBy(() -> checkersGame.getBoardCell(10,10));
     }
 
@@ -32,7 +44,7 @@ public class CheckersGameTest {
     }
 
     @Test
-    public void moveLadieTest(){
+    public void moveKingTest(){
 
     }
 

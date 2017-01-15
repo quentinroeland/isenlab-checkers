@@ -14,4 +14,20 @@ public class CellContent {
         this.type = type;
         this.color = color;
     }
+
+    public CellContentType getType() {
+        return type;
+    }
+
+    public void setType(CellContentType type) {
+        this.type = type;
+    }
+
+    public PawnColor getColor() {
+        return color;
+    }
+
+    public void setColor(PawnColor color) {
+        this.color = color;
+    }
 }
