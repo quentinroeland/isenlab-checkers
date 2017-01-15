@@ -1,10 +1,11 @@
 package fr.isen.checkers.core.board;
 
-import fr.isen.checkers.core.PawnColor;
+import fr.isen.checkers.core.Player;
+import fr.isen.checkers.core.Position;
 import fr.isen.checkers.core.cell.Cell;
 import fr.isen.checkers.core.cell.CellColor;
-import fr.isen.checkers.core.cell.CellContent;
-import fr.isen.checkers.core.cell.CellContentType;
+import fr.isen.checkers.core.exceptions.BoardException;
+import fr.isen.checkers.core.pawns.SimplePawn;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,82 +27,34 @@ public class Board {
     public Board(Integer numberOfRows, Integer numberOfCols){
         this.rows = numberOfRows;
         this.cols = numberOfCols;
-        this.initGameBoard();
-    }
-
-    public void initGameBoard() {
         this.createBoard();
-        this.setupPawn();
     }
 
     public void createBoard(){
         this.board = new ArrayList<List<Cell>>(this.rows);
-        for (Integer i = 0; i < this.rows; i++) {
-            this.board.add(new ArrayList<Cell>(this.cols));
-        }
-    }
-
-    public void setupPawn(){
-        for(Integer row = 0 ; row < this.rows; row ++){
-            List<Cell> currentRow = new ArrayList<>(this.cols);
-            for(Integer col = 0 ; col < this.cols; col ++){
-                CellColor cellColor = this.getInitialCellColor(row, col);
-                CellContent cellContent = this.getInitialCellContent(row, col);
-                Cell currentCell = new Cell(cellColor, cellContent);
-                currentRow.add(currentCell);
+        for (Integer r = 0; r < this.rows; r++) {
+            List<Cell> currentRow = new ArrayList<Cell>(this.cols);
+            for(Integer c = 0; c <this.cols; c++){
+                currentRow.add(new Cell(r,c));
             }
-            this.board.set(row, currentRow);
+            this.board.add(currentRow);
         }
     }
 
-    private CellContent getInitialCellContent(Integer row, Integer col) {
-        CellContentType cellContentType;
-        PawnColor pawnColor;
-        Integer rowModule = row % 2;
-        Integer colModule = col % 2;
-        if(row < 4 || row > this.rows - 1 - 4 ) {
-            if (rowModule == 0) {
-                if (colModule == 0) {
-                    cellContentType = CellContentType.EMPTY;
-                } else {
-                    cellContentType = CellContentType.PAWN;
+    public void setupPawns(Player p1, Player p2, Integer nbRows){
+        setupPawnsPlayer(p1, 0, nbRows);
+        setupPawnsPlayer(p2, this.rows-nbRows, this.rows);
+    }
+
+    public void setupPawnsPlayer(Player p1, Integer rowBegin, Integer rowEnd) {
+        for (Integer rowIndex = rowBegin; rowIndex < rowEnd; rowIndex++) {
+            List<Cell> row = this.board.get(rowIndex);
+            for (Cell cell : row) {
+                if (cell.hasPawnAtInit()) {
+                    SimplePawn pawn = new SimplePawn(p1, cell.getPosition());
+                    p1.addPawn(pawn);
+                    cell.setPawn(pawn);
                 }
-            } else {
-                if (colModule == 0) {
-                    cellContentType = CellContentType.PAWN;
-                } else {
-                    cellContentType = CellContentType.EMPTY;
-                }
-            }
-        }else{
-            cellContentType = CellContentType.EMPTY;
-        }
-        if(row <4 && cellContentType != CellContentType.EMPTY){
-            pawnColor = PawnColor.BLACK;
-        }else{
-            if(row >this.rows - 1 - 4 && cellContentType != CellContentType.EMPTY ){
-                pawnColor = PawnColor.WHITE;
-            }else{
-                pawnColor = PawnColor.NULL;
-            }
-        }
-        return new CellContent(cellContentType, pawnColor);
-    }
-
-    private CellColor getInitialCellColor(Integer row, Integer col) {
-        Integer rowModule = row % 2;
-        Integer colModule = col % 2;
-        if(rowModule == 0){
-            if(colModule == 0){
-                return CellColor.Light;
-            }else{
-                return CellColor.Dark;
-            }
-        }else{
-            if(colModule == 0){
-                return CellColor.Dark;
-            }else{
-                return CellColor.Light;
             }
         }
     }
@@ -115,29 +68,33 @@ public class Board {
         }
     }
 
-    public void display() {
-        for(List<Cell> rows : this.board){
+    public Cell getCell(Position p){
+        return getCell(p.getRowIndex(), p.getColIndex());
+    }
+
+    public void displayCellColor() {
+        for (List<Cell> rows : this.board) {
             System.out.print("|");
-            for(Cell c : rows){
-                CellContent content = c.getContent();
-                if(content.getType() == CellContentType.EMPTY){
-                    System.out.print("__");
+            for (Cell c : rows) {
+                if (c.getColor() == CellColor.Dark) {
+                    System.out.print("D");
+                } else if (c.getColor() == CellColor.Light) {
+                    System.out.print("L");
                 }
-                else if(content.getType() == CellContentType.PAWN){
-                    if(content.getColor() == PawnColor.BLACK){
-                        System.out.print("B.");
-                    }
-                    else if(content.getColor() == PawnColor.WHITE){
-                        System.out.print("W.");
-                    }
-                }
-                else if(content.getType() == CellContentType.KING){
-                    if(content.getColor() == PawnColor.BLACK){
-                        System.out.print("B:");
-                    }
-                    else if(content.getColor() == PawnColor.WHITE){
-                        System.out.print("W:");
-                    }
+                System.out.print("|");
+            }
+            System.out.println("");
+        }
+    }
+
+    public void display(){
+        for (List<Cell> rows : this.board) {
+            System.out.print("|");
+            for (Cell c : rows) {
+                if (c.getPawn() != null) {
+                    System.out.print(c.getPawn().getColor().name().substring(0,1));
+                } else {
+                    System.out.print("_");
                 }
                 System.out.print("|");
             }
