@@ -36,6 +36,7 @@ public class CheckersGameTest {
         assertThat(lastCellContent.getType().equals(CellContentType.EMPTY));
         assertThat(lastCellContent.getColor().equals(PawnColor.NULL));
         assertThatExceptionOfType(BoardException.class).isThrownBy(() -> checkersGame.getBoardCell(10,10));
+        checkersGame.displayGameBoard();
     }
 
     @Test

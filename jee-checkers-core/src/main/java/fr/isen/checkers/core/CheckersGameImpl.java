@@ -33,6 +33,7 @@ public class CheckersGameImpl implements CheckersGame {
 
 
     public void displayGameBoard() {
+        this.board.display();
     }
 
     @Override

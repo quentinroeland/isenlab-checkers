@@ -114,4 +114,34 @@ public class Board {
             throw boardExeception ;
         }
     }
+
+    public void display() {
+        for(List<Cell> rows : this.board){
+            System.out.print("|");
+            for(Cell c : rows){
+                CellContent content = c.getContent();
+                if(content.getType() == CellContentType.EMPTY){
+                    System.out.print("__");
+                }
+                else if(content.getType() == CellContentType.PAWN){
+                    if(content.getColor() == PawnColor.BLACK){
+                        System.out.print("B.");
+                    }
+                    else if(content.getColor() == PawnColor.WHITE){
+                        System.out.print("W.");
+                    }
+                }
+                else if(content.getType() == CellContentType.KING){
+                    if(content.getColor() == PawnColor.BLACK){
+                        System.out.print("B:");
+                    }
+                    else if(content.getColor() == PawnColor.WHITE){
+                        System.out.print("W:");
+                    }
+                }
+                System.out.print("|");
+            }
+            System.out.println("");
+        }
+    }
 }
