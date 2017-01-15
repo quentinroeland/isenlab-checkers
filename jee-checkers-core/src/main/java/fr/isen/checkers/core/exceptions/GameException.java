@@ -1,4 +1,4 @@
-package fr.isen.checkers.core;
+package fr.isen.checkers.core.exceptions;
 
 /**
  * Created by Quentin on 09/01/2017.
