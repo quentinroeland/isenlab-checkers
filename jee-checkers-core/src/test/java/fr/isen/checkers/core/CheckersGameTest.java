@@ -1,8 +1,11 @@
 package fr.isen.checkers.core;
 
+import fr.isen.checkers.core.board.Board;
 import fr.isen.checkers.core.cell.Cell;
 import fr.isen.checkers.core.cell.CellColor;
 import fr.isen.checkers.core.exceptions.BoardException;
+import fr.isen.checkers.core.exceptions.MoveException;
+import fr.isen.checkers.core.pawns.Pawn;
 import fr.isen.checkers.core.pawns.PawnColor;
 import org.junit.Before;
 import org.junit.Test;
@@ -50,8 +53,27 @@ public class CheckersGameTest {
     }
 
     @Test
-    public void movePawnTest(){
-        //checkersGame.movePawn();
+    public void movePawnTest() throws MoveException {
+        Board b = checkersGame.getBoard();
+        Position current = new Position(6,1);
+        Position next = new Position(5,2);
+
+        Pawn pawnToMove = checkersGame.getBoardCell(current).getPawn();
+        b.Move(pawnToMove, next);
+        checkersGame.displayGameBoard();
+
+        //Previous cell is free
+        assertThat(checkersGame.getBoardCell(current).getPawn()).isNull();
+        //New cell is taken
+        assertThat(checkersGame.getBoardCell(next).getPawn()).isNotNull();
+
+        //Cell taken exception
+        Position taken = new Position(3,0);
+        assertThatExceptionOfType(MoveException.class).isThrownBy(() -> b.Move(pawnToMove, taken));
+
+        //Cell not existing
+        Position outOfBounds = new Position(10,4);
+        assertThatExceptionOfType(BoardException.class).isThrownBy(() -> b.Move(pawnToMove, outOfBounds));
     }
 
     @Test

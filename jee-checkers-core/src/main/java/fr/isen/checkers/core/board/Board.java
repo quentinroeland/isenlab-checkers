@@ -5,6 +5,8 @@ import fr.isen.checkers.core.Position;
 import fr.isen.checkers.core.cell.Cell;
 import fr.isen.checkers.core.cell.CellColor;
 import fr.isen.checkers.core.exceptions.BoardException;
+import fr.isen.checkers.core.exceptions.MoveException;
+import fr.isen.checkers.core.pawns.Pawn;
 import fr.isen.checkers.core.pawns.SimplePawn;
 
 import java.util.ArrayList;
@@ -70,6 +72,21 @@ public class Board {
 
     public Cell getCell(Position p){
         return getCell(p.getRowIndex(), p.getColIndex());
+    }
+
+    public void Move(Pawn pawn, Position nextPosition) throws MoveException {
+        Cell currentCell = this.getCell(pawn.getPosition());
+
+
+        Cell nextCell = this.getCell(nextPosition);
+        if(nextCell.getPawn() != null){
+            throw new MoveException("Move not allowed : the cell is not empty");
+        }
+        else{
+            currentCell.setPawn(null);
+            pawn.setPosition(nextPosition);
+            nextCell.setPawn(pawn);
+        }
     }
 
     public void displayCellColor() {

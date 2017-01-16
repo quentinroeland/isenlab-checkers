@@ -1,5 +1,6 @@
 package fr.isen.checkers.core;
 
+import fr.isen.checkers.core.board.Board;
 import fr.isen.checkers.core.cell.Cell;
 import fr.isen.checkers.core.pawns.Pawn;
 
@@ -16,6 +17,8 @@ public interface CheckersGame {
     Cell getBoardCell(int row , int col);
 
     Cell getBoardCell(Position p);
+
+    Board getBoard();
 
     Player getPlayer1();
 

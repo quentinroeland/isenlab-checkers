@@ -8,8 +8,8 @@ import fr.isen.checkers.core.Position;
  */
 public abstract class Pawn {
 
-    public Position position;
-    public PawnColor color;
+    private Position position;
+    private PawnColor color;
 
     public Pawn(Player player, Position position){
         this.position = position;
@@ -23,8 +23,7 @@ public abstract class Pawn {
         return color;
     }
 
-    public List<Move> getMoves(){
-        //Not implemented yet
-        return null;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 }

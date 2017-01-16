@@ -34,7 +34,6 @@ public class CheckersGameImpl implements CheckersGame {
 
     @Override
     public void play(Player player, Pawn pawn) {
-
     }
 
     @Override
@@ -53,6 +52,10 @@ public class CheckersGameImpl implements CheckersGame {
         return this.getBoardCell(p.getRowIndex(),p.getColIndex());
     }
 
+    @Override
+    public Board getBoard(){
+        return this.board;
+    }
     @Override
     public Player getPlayer1() {
         return player1;
