@@ -4,10 +4,12 @@ import fr.isen.checkers.core.board.Board;
 import fr.isen.checkers.core.cell.Cell;
 import fr.isen.checkers.core.pawns.Pawn;
 
+import java.io.Serializable;
+
 /**
  * Created by Quentin on 09/01/2017.
  */
-public interface CheckersGame {
+public interface CheckersGame extends Serializable {
     public void init();
 
     public void play(Player player, Pawn pawn);

@@ -39,7 +39,7 @@ public class CheckersGameImpl implements CheckersGame {
     @Override
     public void displayGameBoard() {
         this.board.display();
-        this.board.displayCellColor();
+        //this.board.displayCellColor();
     }
 
     @Override
