@@ -2,6 +2,7 @@ package fr.isen.checkers.core;
 
 import fr.isen.checkers.core.board.Board;
 import fr.isen.checkers.core.cell.Cell;
+import fr.isen.checkers.core.exceptions.MoveException;
 import fr.isen.checkers.core.pawns.Pawn;
 
 import java.io.Serializable;
@@ -25,4 +26,8 @@ public interface CheckersGame extends Serializable {
     Player getPlayer1();
 
     Player getPlayer2();
+
+    public void move(Position origin, Position destination) throws MoveException;
+
+    public void setPlayers(Player player1, Player player2);
 }

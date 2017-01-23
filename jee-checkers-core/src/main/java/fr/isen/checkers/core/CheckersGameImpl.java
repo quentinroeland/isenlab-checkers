@@ -3,6 +3,7 @@ package fr.isen.checkers.core;
 import fr.isen.checkers.core.board.Board;
 import fr.isen.checkers.core.exceptions.BoardException;
 import fr.isen.checkers.core.cell.Cell;
+import fr.isen.checkers.core.exceptions.MoveException;
 import fr.isen.checkers.core.pawns.Pawn;
 import fr.isen.checkers.core.pawns.PawnColor;
 
@@ -64,5 +65,16 @@ public class CheckersGameImpl implements CheckersGame {
     @Override
     public Player getPlayer2() {
         return player2;
+    }
+
+    @Override
+    public void move(Position origin, Position destination) throws MoveException {
+        this.getBoard().Move(this.getBoardCell(origin).getPawn(), destination);
+    }
+
+    @Override
+    public void setPlayers(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
     }
 }
