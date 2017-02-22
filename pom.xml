@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>fr.isen.checkers</groupId>
@@ -16,7 +16,6 @@
   <packaging>pom</packaging>
   <description></description>
 
-
   <properties>
     <java.version>1.8</java.version>
     <jee.version>7.0</jee.version>
@@ -27,9 +26,6 @@
     <module>jee-checkers-core</module>
     <module>jee-checkers-web</module>
     <module>jee-checkers-jpa</module>
-    <!--
-    <module>jee-bootstrap-rest</module>
-    -->
   </modules>
 
 
@@ -163,8 +159,6 @@
         <scope>provided</scope>
       </dependency>
 
-
-
       <dependency>
         <groupId>org.hibernate</groupId>
         <artifactId>hibernate-entitymanager</artifactId>
@@ -218,22 +212,6 @@
         <version>2.5.0</version>
       </dependency>
 
-      <dependency>
-        <groupId>fr.isen.jee-checkers</groupId>
-        <artifactId>jee-checkers-core</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>fr.isen.jee-checkers</groupId>
-        <artifactId>jee-checkers-jpa</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-
-      <!-- dependency>
-        <groupId>org.dmetzler.isen.jee-bootstrap</groupId>
-        <artifactId>jee-bootstrap-rest</artifactId>
-        <version>${project.version}</version>
-      </dependency-->
     </dependencies>
   </dependencyManagement>
 

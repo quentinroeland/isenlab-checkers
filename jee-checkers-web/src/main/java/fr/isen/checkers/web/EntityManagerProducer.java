@@ -1,8 +1,8 @@
 package fr.isen.checkers.web;
 
+import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.ws.rs.Produces;
 
 /**
  * Created by Quentin on 22/02/2017.

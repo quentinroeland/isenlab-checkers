@@ -4,7 +4,6 @@ import fr.isen.checkers.core.CheckersGameImpl;
 import fr.isen.checkers.core.Player;
 import fr.isen.checkers.core.board.Board;
 import fr.isen.checkers.core.pawns.PawnColor;
-import fr.isen.checkers.jpa.CheckersDAO;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
@@ -16,7 +15,7 @@ import javax.ws.rs.Produces;
 public class GameService {
 		
 	@Inject
-	private CheckersDAO dao;
+	private GameBean bean;
 	 
 	@GET
 	@Path("/player")

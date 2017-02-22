@@ -73,7 +73,6 @@
         <groupId>fr.isen.checkers</groupId>
         <artifactId>jee-checkers-jpa</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <scope>provided</scope>
     </dependency>
 
 
