@@ -1,6 +1,7 @@
 package fr.isen.checkers.core.cell;
 
-import fr.isen.checkers.core.PawnColor;
+
+import fr.isen.checkers.core.pawns.PawnColor;
 
 /**
  * Created by maxim on 12/01/2017.

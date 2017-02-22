@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by Quentin on 23/01/2017.
  */
 
-@Entity
+@Entity(name="Move")
 public class MoveEntity {
 
     @Id

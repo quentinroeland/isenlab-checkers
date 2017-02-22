@@ -1,74 +1,104 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<parent>
     <groupId>fr.isen.checkers</groupId>
     <artifactId>jee-checkers-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
-  </parent>
+</parent>
+<modelVersion>4.0.0</modelVersion>
 
-  <artifactId>jee-checkers-web</artifactId>
-  <packaging>war</packaging>
-  <name>JEE Checkers :: web</name>
+<artifactId>jee-checkers-web</artifactId>
+<packaging>war</packaging>
+<name>JEE Checkers :: web</name>
 
-  <build>
-    <finalName>checkers</finalName>
+<build>
+    <finalName>Checkers</finalName>
     <plugins>
 
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.6</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>integration-test</goal>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+        <plugin>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <version>2.6</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>integration-test</goal>
+                        <goal>verify</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+        <plugin>
+            <groupId>net.sf.opk</groupId>
+            <artifactId>embedded-glassfish-web-plugin</artifactId>
+            <configuration>
+                <httpPort>9090</httpPort>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>start-glassfish</id>
+                    <phase>pre-integration-test</phase>
+                    <goals>
+                        <goal>start</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>stop-glassfish</id>
+                    <phase>post-integration-test</phase>
+                    <goals>
+                        <goal>stop</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
     </plugins>
-  </build>
+</build>
 
-  <dependencies>
+<dependencies>
     <dependency>
-      <groupId>fr.isen.checkers</groupId>
-      <artifactId>jee-checkers-core</artifactId>
-      <version>1.0-SNAPSHOT</version>
+        <groupId>javax</groupId>
+        <artifactId>javaee-web-api</artifactId>
     </dependency>
 
     <dependency>
-      <groupId>javax</groupId>
-      <artifactId>javaee-web-api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+        <groupId>fr.isen.checkers</groupId>
+        <artifactId>jee-checkers-core</artifactId>
+        <version>1.0-SNAPSHOT</version>
     </dependency>
 
 
     <dependency>
-      <artifactId>commons-lang</artifactId>
-      <groupId>commons-lang</groupId>
+        <groupId>fr.isen.checkers</groupId>
+        <artifactId>jee-checkers-jpa</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <scope>provided</scope>
     </dependency>
 
+
+    <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-server -->
     <dependency>
-      <artifactId>commons-logging</artifactId>
-      <groupId>commons-logging</groupId>
+        <groupId>org.glassfish.jersey.core</groupId>
+        <artifactId>jersey-server</artifactId>
+        <version>2.25</version>
+        <scope>provided</scope>
     </dependency>
 
+    <!-- JacksonJsonProvider -->
     <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
+        <groupId>org.glassfish.extras</groupId>
+        <artifactId>glassfish-embedded-web</artifactId>
+        <version>3.1.1</version>
+        <scope>provided</scope>
     </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
     <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
+        <groupId>org.glassfish.jersey.media</groupId>
+        <artifactId>jersey-media-json-jackson</artifactId>
+        <version>2.25</version>
+        <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-firefox-driver</artifactId>
-    </dependency>
-  </dependencies>
+</dependencies>
 </project>

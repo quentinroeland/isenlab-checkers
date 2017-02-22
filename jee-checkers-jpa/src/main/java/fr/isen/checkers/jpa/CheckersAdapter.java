@@ -24,8 +24,14 @@ public class CheckersAdapter {
     }
 
     public void restoreGame() throws MoveException {
+    	//init
+    	this.coreGame.init();
+   
         //restore Players
-
+    	//PlayerEntity p1 = this.gameEntity.getPlayer1();
+    	//PlayerEntity p2 = this.gameEntity.getPlayer2();
+    	//this.coreGame.setPlayers(new Player(p1.getUsername(), p1.getColor()), new Player(p2.getUsername(), p2.getColor()));
+    	
         //restore Board state from moves
         for(MoveEntity m : this.gameEntity.getMoves()){
             this.coreGame.move(
@@ -37,4 +43,8 @@ public class CheckersAdapter {
     public String getToken() {
         return this.gameEntity.getToken();
     }
+    
+    public CheckersGame getCoreGame() {
+		return coreGame;
+	}
 }
