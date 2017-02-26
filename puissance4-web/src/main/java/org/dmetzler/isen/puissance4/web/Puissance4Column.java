@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dmetzler.isen.puissance4.core.ChipColour;
-import org.dmetzler.isen.puissance4.core.Puissance4Game;
+import org.dmetzler.isen.puissance4.core.CheckersGame;
 
 public class Puissance4Column {
 
     private int index;
-    private Puissance4Game game;
+    private CheckersGame game;
 
-    public Puissance4Column(int i, Puissance4Game game) {
+    public Puissance4Column(int i, CheckersGame game) {
         this.index = i;
         this.game = game;
     }

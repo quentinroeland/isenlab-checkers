@@ -9,8 +9,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.dmetzler.isen.puissance4.core.ChipColour;
-import org.dmetzler.isen.puissance4.core.Puissance4Game;
-import org.dmetzler.isen.puissance4.core.Puissance4GameImpl;
+import org.dmetzler.isen.puissance4.core.CheckersGame;
+import org.dmetzler.isen.puissance4.core.CheckersGameImpl;
 import org.dmetzler.isen.puissance4.jpa.Puissance4Adapter;
 import org.dmetzler.isen.puissance4.jpa.Puissance4DAO;
 
@@ -54,7 +54,7 @@ public class Puissance4Bean implements Serializable {
         }
     }
 
-    public Puissance4Game getGame() {
+    public CheckersGame getGame() {
         return game;
     }
 

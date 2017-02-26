@@ -4,21 +4,21 @@ import java.math.BigDecimal;
 
 import org.dmetzler.isen.puissance4.core.ChipColour;
 import org.dmetzler.isen.puissance4.core.GameException;
-import org.dmetzler.isen.puissance4.core.Puissance4Game;
-import org.dmetzler.isen.puissance4.core.Puissance4GameImpl;
+import org.dmetzler.isen.puissance4.core.CheckersGame;
+import org.dmetzler.isen.puissance4.core.CheckersGameImpl;
 
-public class Puissance4Adapter implements Puissance4Game {
+public class Puissance4Adapter implements CheckersGame {
 
     private Game game;
 
-    private Puissance4Game coreGame;
+    private CheckersGame coreGame;
 
     private Puissance4DAO dao;
 
     public Puissance4Adapter(Puissance4DAO dao, Game game) {
         this.dao = dao;
         this.game = game;
-        this.coreGame = new Puissance4GameImpl();
+        this.coreGame = new CheckersGameImpl();
 
         for (Turn turn : game.getTurns()) {
             this.coreGame.play(turn.getColour(), turn.getSrcColumn(), turn.getSrcRow(), turn.getDestColumn(), turn.getDestRow());

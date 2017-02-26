@@ -7,17 +7,20 @@ import org.dmetzler.isen.puissance4.*;
 /**
  * Created by dmetzler on 03/09/2014.
  */
-public class Puissance4GameImpl implements Puissance4Game {
+public class CheckersGameImpl implements CheckersGame {
 
     public static final int COLUMNS_NUMBER = 10;
     public static final int ROWS_NUMBER = 10;
     public static final int NUMBER_OF_CHIP_TO_ALIGN = 4;
     public static final String OUTSIDE_OF_BOARD_ERROR = "It is not possible to play outside of the board";
-
+    public static final String CASE_EMPTY = "The case you picked is empty";
+    public static final String CASE_NOT_EMPTY= "The case you picked is not empty";
+    public static final String WRONG_WAY= "You're going the wrong way";
+    
 
     List<List<ChipColour>> board = new ArrayList<>();
 
-    public Puissance4GameImpl() {
+    public CheckersGameImpl() {
         initBoard();
     }
 
@@ -73,24 +76,91 @@ public class Puissance4GameImpl implements Puissance4Game {
 
 
     @Override
-    public void play(ChipColour colour,int sourceColumn, int sourceRow, int destColumn, int destRow) {
-        if (sourceColumn > getColumnsNumber() - 1 && sourceRow > getRowsNumber() -1 ) {
+    public void play(ChipColour colour,int srcColumn, int srcRow, int destColumn, int destRow) {
+        if (srcColumn > getColumnsNumber() - 1 || srcRow > getRowsNumber() -1 ||
+        	destColumn > getColumnsNumber() -1 || destRow > getRowsNumber() -1 )
+        {
             throw new GameException(OUTSIDE_OF_BOARD_ERROR);
         }
-        List<ChipColour> col = board.get(sourceColumn);
-        if (col.size() >= ROWS_NUMBER) {
-            throw new GameException(OUTSIDE_OF_BOARD_ERROR);
+        ChipColour currentPlayer = this.getCell(srcRow, srcColumn);
+        if(currentPlayer == ChipColour.NULL){
+        	throw new GameException(CASE_EMPTY);
+        }else{
+        	ChipColour destCase = this.getCell(destRow, destColumn);
+        	if(destCase != ChipColour.NULL){
+        		throw new GameException(CASE_NOT_EMPTY);
+        	}
+        	if(currentPlayer == ChipColour.BLACK){
+        		playBlack(srcColumn, srcRow,  destColumn,  destRow);
+        	}else{
+        		playWhite(srcColumn, srcRow,  destColumn,  destRow);
+        	}
         }
-        col.add(colour);
     }
 
+    
+    //Going Down
+    public void playBlack(int srcColumn, int srcRow, int  destColumn, int  destRow){
+    	if(destRow < srcRow){
+    		throw new GameException(WRONG_WAY);
+    	}
+    	//Cas simple deplacement a une case
+    	if(srcRow == destRow -1 && ((srcColumn == destColumn +1) ||(srcColumn == destColumn -1))){
+    			this.setCell(srcRow, srcColumn, ChipColour.NULL);
+    			this.setCell(destRow, destColumn, ChipColour.BLACK);
+    	}
+    	//Prise Simple
+    	if(srcRow == destRow -2 && ((srcColumn == destColumn +2) ||(srcColumn == destColumn -2))){
+			this.setCell(srcRow, srcColumn, ChipColour.NULL);
+			if(srcColumn < destColumn){
+				//Prise simple a droite
+				this.setCell(srcRow -1, srcColumn +1, ChipColour.NULL);
+			}else{
+				//Prise simple a gauche
+				this.setCell(srcRow -1, srcColumn -1, ChipColour.NULL);
+			}
+			this.setCell(destRow, destColumn, ChipColour.BLACK);
+    	}
+    	
+    	//TODO prise complexe (plus qu'un pion)
+    }
+    
+    //Going UP
+    public void playWhite(int srcColumn, int srcRow, int  destColumn, int  destRow){
+    	if(destRow > srcRow){
+    		throw new GameException(WRONG_WAY);
+    	}
+    	if(srcRow == destRow +1 && ((srcColumn == destColumn +1) ||(srcColumn == destColumn -1))){
+			this.setCell(srcRow, srcColumn, ChipColour.NULL);
+			this.setCell(destRow, destColumn, ChipColour.WHITE);
+    	}
+    	if(srcRow == destRow +2 && ((srcColumn == destColumn +2) ||(srcColumn == destColumn -2))){
+			this.setCell(srcRow, srcColumn, ChipColour.NULL);
+			if(srcColumn < destColumn){
+				//Prise simple a droite
+				this.setCell(srcRow +1, srcColumn +1, ChipColour.NULL);
+			}else{
+				//Prise simple a gauche
+				this.setCell(srcRow +1, srcColumn -1, ChipColour.NULL);
+			}
+			this.setCell(destRow, destColumn, ChipColour.WHITE);
+    	}
+    	
+    	//TODO prise complexe (plus qu'un pion)
+    }
+    
     @Override
     public ChipColour getCell(int i, int j) {
         if (i < 0 || i >= getColumnsNumber()) {
             return null;
         }
-        List<ChipColour> column = board.get(i);
-        return j < column.size() && j >= 0 ? column.get(j) : null;
+        List<ChipColour> row = board.get(i);
+        return j < row.size() && j >= 0 ? row.get(j) : null;
+    }
+    
+    public void setCell(int rowIndex, int colIndex, ChipColour cp){
+    	List<ChipColour> row = board.get(rowIndex);
+        row.set(colIndex, cp);
     }
 
     @Override

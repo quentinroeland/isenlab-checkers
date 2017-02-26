@@ -11,13 +11,13 @@ import org.junit.Test;
 /**
  * Created by dmetzler on 03/09/2014.
  */
-public class Puissance4GameTest {
+public class CheckersGameTest {
 
-    private Puissance4Game game;
+    private CheckersGame game;
 
     @Before
     public void doBefore() throws Exception {
-        game = new Puissance4GameImpl();
+        game = new CheckersGameImpl();
     }
 
     @Test
@@ -25,6 +25,13 @@ public class Puissance4GameTest {
       
         assertThat(game.getCell(0, 0)).isEqualTo(ChipColour.NULL);
         assertThat(game.getCell(0, 1)).isEqualTo(ChipColour.BLACK);
+    }
+    
+    
+    @Test
+    public void gameMove() throws Exception{
+    //
+    	
     }
 
 
