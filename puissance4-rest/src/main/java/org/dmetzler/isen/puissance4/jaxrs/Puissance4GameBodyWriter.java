@@ -59,13 +59,13 @@ public class Puissance4GameBodyWriter implements
         jg.writeStringField("token", game.getToken());
 
 
-        jg.writeFieldName("cols");
+        jg.writeFieldName("row");
         jg.writeStartArray();
 
         for(int i=0; i < game.getColumnsNumber(); i ++) {
             jg.writeStartObject();
 
-            jg.writeFieldName("cells");
+            jg.writeFieldName("cols");
             jg.writeStartArray();
             for(int j=0; j < game.getRowsNumber(); j ++) {
                 ChipColour cell = game.getCell(i,j);
