@@ -1,43 +1,33 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>fr.isen.checkers</groupId>
-  <artifactId>jee-checkers-parent</artifactId>
+
+  <groupId>org.dmetzler.isen.puissance4</groupId>
+  <artifactId>puissance4-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>compile</scope>
-    </dependency>
-  </dependencies>
-  <name>Checkers :: parent</name>
+  <name>Puissance 4 :: parent</name>
   <packaging>pom</packaging>
   <description></description>
 
+
   <properties>
-    <java.version>1.8</java.version>
+    <java.version>1.7</java.version>
     <jee.version>7.0</jee.version>
     <selenium.version>2.44.0</selenium.version>
   </properties>
 
   <modules>
-    <module>jee-checkers-core</module>
-    <module>jee-checkers-web</module>
-    <module>jee-checkers-jpa</module>
+    <module>puissance4-core</module>
+    <module>puissance4-jpa</module>
+    <module>puissance4-web</module>
+    <module>puissance4-rest</module>
   </modules>
 
 
   <build>
     <pluginManagement>
       <plugins>
-        <plugin>
-          <groupId>org.apache.tomcat.maven</groupId>
-          <artifactId>tomcat7-maven-plugin</artifactId>
-          <version>2.2</version>
-        </plugin>
-
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -46,6 +36,11 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.eluder.coveralls</groupId>
+          <artifactId>coveralls-maven-plugin</artifactId>
+          <version>3.0.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -58,12 +53,11 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-war-plugin</artifactId>
-          <version>2.6</version>
+          <version>2.3</version>
           <configuration>
             <failOnMissingWebXml>false</failOnMissingWebXml>
           </configuration>
         </plugin>
-
         <plugin>
           <groupId>net.sf.opk</groupId>
           <artifactId>embedded-glassfish-web-plugin</artifactId>
@@ -98,7 +92,7 @@
       <dependency>
         <groupId>org.assertj</groupId>
         <artifactId>assertj-core</artifactId>
-        <version>3.6.1</version>
+        <version>1.7.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -149,7 +143,6 @@
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
         <version>3.0</version>
-        <scope>test</scope>
       </dependency>
 
       <dependency>
@@ -158,6 +151,8 @@
         <version>1.0.2</version>
         <scope>provided</scope>
       </dependency>
+
+
 
       <dependency>
         <groupId>org.hibernate</groupId>
@@ -212,6 +207,22 @@
         <version>2.5.0</version>
       </dependency>
 
+      <dependency>
+        <groupId>org.dmetzler.isen.puissance4</groupId>
+        <artifactId>puissance4-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.dmetzler.isen.puissance4</groupId>
+        <artifactId>puissance4-jpa</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.dmetzler.isen.puissance4</groupId>
+        <artifactId>puissance4-rest</artifactId>
+        <version>${project.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
