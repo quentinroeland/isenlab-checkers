@@ -19,8 +19,6 @@ public class Turn {
     @ManyToOne
     Game game;
 
-    private String colour;
-
     @Column(name="srcCol")
     private int srcColumn;
     
@@ -39,10 +37,9 @@ public class Turn {
 
     }
 
-	public Turn(Game game, ChipColour colour, int srcColumn, int srcRow, int destColumn, int destRow) {
+	public Turn(Game game, int srcColumn, int srcRow, int destColumn, int destRow) {
 		super();
 		this.game = game;
-		this.colour = colour.toString();
 		this.srcColumn = srcColumn;
 		this.srcRow = srcRow;
 		this.destColumn = destColumn;
@@ -70,14 +67,6 @@ public class Turn {
 	public void setGame(Game game) {
 		this.game = game;
 	}
-
-
-
-	public ChipColour getColour() {
-		return ChipColour.valueOf(colour);
-	}
-
-
 
 
 

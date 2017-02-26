@@ -76,17 +76,17 @@ public class CheckersGameImpl implements CheckersGame {
 
 
     @Override
-    public void play(ChipColour colour,int srcColumn, int srcRow, int destColumn, int destRow) {
+    public void play(int srcColumn, int srcRow, int destColumn, int destRow) {
         if (srcColumn > getColumnsNumber() - 1 || srcRow > getRowsNumber() -1 ||
         	destColumn > getColumnsNumber() -1 || destRow > getRowsNumber() -1 )
         {
             throw new GameException(OUTSIDE_OF_BOARD_ERROR);
         }
-        ChipColour currentPlayer = this.getCell(srcRow, srcColumn);
+        ChipColour currentPlayer = this.getCell(srcColumn, srcRow);
         if(currentPlayer == ChipColour.NULL){
         	throw new GameException(CASE_EMPTY);
         }else{
-        	ChipColour destCase = this.getCell(destRow, destColumn);
+        	ChipColour destCase = this.getCell( destColumn, destRow);
         	if(destCase != ChipColour.NULL){
         		throw new GameException(CASE_NOT_EMPTY);
         	}
@@ -106,20 +106,20 @@ public class CheckersGameImpl implements CheckersGame {
     	}
     	//Cas simple deplacement a une case
     	if(srcRow == destRow -1 && ((srcColumn == destColumn +1) ||(srcColumn == destColumn -1))){
-    			this.setCell(srcRow, srcColumn, ChipColour.NULL);
-    			this.setCell(destRow, destColumn, ChipColour.BLACK);
+    			this.setCell(srcColumn, srcRow, ChipColour.NULL);
+    			this.setCell(destColumn, destRow, ChipColour.BLACK);
     	}
     	//Prise Simple
     	if(srcRow == destRow -2 && ((srcColumn == destColumn +2) ||(srcColumn == destColumn -2))){
-			this.setCell(srcRow, srcColumn, ChipColour.NULL);
+			this.setCell( srcColumn, srcRow, ChipColour.NULL);
 			if(srcColumn < destColumn){
 				//Prise simple a droite
-				this.setCell(srcRow -1, srcColumn +1, ChipColour.NULL);
+				this.setCell(srcColumn +1, srcRow +1, ChipColour.NULL);
 			}else{
 				//Prise simple a gauche
-				this.setCell(srcRow -1, srcColumn -1, ChipColour.NULL);
+				this.setCell( srcColumn -1, srcRow +1, ChipColour.NULL);
 			}
-			this.setCell(destRow, destColumn, ChipColour.BLACK);
+			this.setCell(destColumn, destRow,  ChipColour.BLACK);
     	}
     	
     	//TODO prise complexe (plus qu'un pion)
@@ -131,34 +131,34 @@ public class CheckersGameImpl implements CheckersGame {
     		throw new GameException(WRONG_WAY);
     	}
     	if(srcRow == destRow +1 && ((srcColumn == destColumn +1) ||(srcColumn == destColumn -1))){
-			this.setCell(srcRow, srcColumn, ChipColour.NULL);
-			this.setCell(destRow, destColumn, ChipColour.WHITE);
+			this.setCell(srcColumn,srcRow, ChipColour.NULL);
+			this.setCell(destColumn, destRow,ChipColour.WHITE);
     	}
     	if(srcRow == destRow +2 && ((srcColumn == destColumn +2) ||(srcColumn == destColumn -2))){
-			this.setCell(srcRow, srcColumn, ChipColour.NULL);
+			this.setCell(srcColumn, srcRow, ChipColour.NULL);
 			if(srcColumn < destColumn){
 				//Prise simple a droite
-				this.setCell(srcRow +1, srcColumn +1, ChipColour.NULL);
+				this.setCell(srcColumn +1, srcRow -1, ChipColour.NULL);
 			}else{
 				//Prise simple a gauche
-				this.setCell(srcRow +1, srcColumn -1, ChipColour.NULL);
+				this.setCell(srcColumn -1, srcRow -1, ChipColour.NULL);
 			}
-			this.setCell(destRow, destColumn, ChipColour.WHITE);
+			this.setCell(destColumn,destRow,  ChipColour.WHITE);
     	}
     	
     	//TODO prise complexe (plus qu'un pion)
     }
     
     @Override
-    public ChipColour getCell(int i, int j) {
-        if (i < 0 || i >= getColumnsNumber()) {
+    public ChipColour getCell(int colIndex, int rowIndex) {
+        if (rowIndex < 0 || rowIndex >= getColumnsNumber()) {
             return null;
         }
-        List<ChipColour> row = board.get(i);
-        return j < row.size() && j >= 0 ? row.get(j) : null;
+        List<ChipColour> row = board.get( rowIndex);
+        return colIndex < row.size() && colIndex >= 0 ? row.get(colIndex) : null;
     }
     
-    public void setCell(int rowIndex, int colIndex, ChipColour cp){
+    public void setCell(int colIndex , int rowIndex, ChipColour cp){
     	List<ChipColour> row = board.get(rowIndex);
         row.set(colIndex, cp);
     }
@@ -258,7 +258,7 @@ public class CheckersGameImpl implements CheckersGame {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        for (int i = getRowsNumber() - 1; i >= 0; i--) {
+        for (int i = 0; i <= getRowsNumber() - 1; i++) {
             sb.append("|");
             for (int j = 0; j < getColumnsNumber(); j++) {
                 if (getCell(j, i) == ChipColour.WHITE) {

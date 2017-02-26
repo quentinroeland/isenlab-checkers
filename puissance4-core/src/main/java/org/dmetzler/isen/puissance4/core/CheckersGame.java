@@ -12,7 +12,7 @@ public interface CheckersGame {
 	 * @param column
 	 * @throws GameException if it is not allowed to play in that cell.
 	 */
-    void play(ChipColour colour, int sourceColumn, int sourceRow, int destColumn, int destRow) throws GameException;
+    void play(int sourceColumn, int sourceRow, int destColumn, int destRow) throws GameException;
 
     /**
      * Returns the colour of the chip in a given cell, null if no

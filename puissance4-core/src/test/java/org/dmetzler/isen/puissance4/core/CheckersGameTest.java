@@ -30,7 +30,16 @@ public class CheckersGameTest {
     
     @Test
     public void gameMove() throws Exception{
-    //
+    	game.play(1, 6, 2, 5);
+    	assertThat(game.getCell(1, 6)).isEqualTo(ChipColour.NULL);
+    	assertThat(game.getCell(2, 5)).isEqualTo(ChipColour.WHITE);
+    	game.play(0, 3, 1, 4);
+    	assertThat(game.getCell(0, 3)).isEqualTo(ChipColour.NULL);
+    	assertThat(game.getCell(1, 4)).isEqualTo(ChipColour.BLACK);
+    	game.play(2, 5, 0, 3);
+    	assertThat(game.getCell(2, 5)).isEqualTo(ChipColour.NULL);
+    	assertThat(game.getCell(1, 4)).isEqualTo(ChipColour.NULL);
+    	assertThat(game.getCell(0, 3)).isEqualTo(ChipColour.WHITE);    	
     	
     }
 

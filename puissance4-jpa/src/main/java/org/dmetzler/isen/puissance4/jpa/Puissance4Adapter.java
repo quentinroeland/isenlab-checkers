@@ -21,15 +21,15 @@ public class Puissance4Adapter implements CheckersGame {
         this.coreGame = new CheckersGameImpl();
 
         for (Turn turn : game.getTurns()) {
-            this.coreGame.play(turn.getColour(), turn.getSrcColumn(), turn.getSrcRow(), turn.getDestColumn(), turn.getDestRow());
+            this.coreGame.play(turn.getSrcColumn(), turn.getSrcRow(), turn.getDestColumn(), turn.getDestRow());
         }
 
     }
 
     @Override
-    public void play(ChipColour colour, int srcColumn, int srcRow, int destColumn, int destRow) throws GameException {
-        coreGame.play(colour, srcColumn,srcRow, destColumn, destRow);
-        this.game.getTurns().add(new Turn(this.game, colour, srcColumn,srcRow, destColumn, destRow));
+    public void play(int srcColumn, int srcRow, int destColumn, int destRow) throws GameException {
+        coreGame.play(srcColumn,srcRow, destColumn, destRow);
+        this.game.getTurns().add(new Turn(this.game, srcColumn,srcRow, destColumn, destRow));
         switchTurn();
 
         dao.save(game);
