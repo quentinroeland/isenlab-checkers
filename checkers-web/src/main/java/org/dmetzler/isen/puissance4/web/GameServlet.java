@@ -53,7 +53,7 @@ public class GameServlet extends HttpServlet {
                 game.play(Integer.parseInt(srcCol),Integer.parseInt(srcRow), Integer.parseInt(destCol), Integer.parseInt(destRow));
                 redirectToGameRoot(response, request);
             } else {
-                request.getRequestDispatcher("/game.jsp").include(request,
+                request.getRequestDispatcher("/angular.jsp").include(request,
                         response);
             }
 

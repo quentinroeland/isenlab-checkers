@@ -22,7 +22,7 @@
     <div class="ui fixed inverted main menu">
         <div class="container">
             <div class="title item">
-                <b>Puissance 4</b>
+                <b>Checkers</b>
             </div>
         </div>
     </div>
@@ -30,22 +30,22 @@
 
    <div id="header" class="header segment">
         <div class="container">
-            <h2 class="ui dividing header">Puissance 4</h2>
+            <h2 class="ui dividing header">Checkers</h2>
             <div class="introduction">
-                <p>Simple puissance4 app that makes use of JEE servlets</p>
+                <p>Simple Checkers app that makes use of JEE servlets</p>
             </div>
 
-              <div ng-show="game.winner" id="winner" ng-class="{massive:true, circular:true, ui:true, red:game.winner=='RED', yellow:game.winner=='YELLOW', icon:true,  button:true}">WINS</div>
+              <div ng-show="game.winner != 'NULL'" id="winner" ng-class="{massive:true, circular:true, ui:true, red:game.winner=='RED', yellow:game.winner=='YELLOW', icon:true,  button:true}">WINS</div>
 
 
         </div>
     </div>
 
     <div class="main container">
-      <div id="board" class="ui seven column padded grid">
+      <div id="board" class="ui ten column padded grid">
           <a ng-repeat="col in game.cols" ng-click="play(col)" class="blue column">
 
-            <div ng-repeat="cell in col.cells.slice().reverse() track by $index" ng-class="{massive:true, circular:true, ui:true, icon:true, red:cell=='RED', yellow:cell=='YELLOW',  button:true}"></div>
+            <div ng-repeat="cell in col.cells.slice() track by $index" ng-class="{massive:true, circular:true, ui:true, icon:true, black:cell=='BLACK', white:cell=='WHITE',blue:cell=='NULL' ,  button:true}"></div>
 
           </a>
       </div>

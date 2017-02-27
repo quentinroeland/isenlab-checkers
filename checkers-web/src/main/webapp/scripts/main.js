@@ -1,10 +1,13 @@
 'use strict';
-
+console.log("test");
 angular.module('puissance4AngularApp', [])
   .controller('MainCtrl', ['$scope','$http', function($scope,$http) {
-    $http({url:apiEndpoint,method:'GET'}).success(
+	  console.log("test");
+	  $http({url:apiEndpoint,method:'GET'}).success(
       function(data) {
-        $scope.game=data;
+    	  console.log("test");
+    	  console.log(data);
+    	  $scope.game=data;
       }
     );
     $scope.play = function(col) {

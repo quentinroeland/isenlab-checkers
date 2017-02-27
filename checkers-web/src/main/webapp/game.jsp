@@ -12,7 +12,7 @@
         <div class="container">
             <a class="launch item"><i class="content icon"></i></a>
             <div class="title item">
-                <b>Puissance 4</b>
+                <b>Checkers</b>
             </div>
         </div>
     </div>
@@ -20,11 +20,11 @@
 
    <div id="header" class="header segment">
         <div class="container">
-            <h2 class="ui dividing header">Puissance 4</h2>
+            <h2 class="ui dividing header">Checkers</h2>
             <div class="introduction">
-                <p>Simple puissance4 app that makes use of JEE servlets</p>
+                <p>Simple checkers app that makes use of JEE servlets</p>
             </div>
-            <c:if test="${game.winner != null}">
+            <c:if test="${game.winner != 'NULL'}">
               <div id="winner" class="massive circular ui icon ${game.winner.cssColor} button">WINS</div>
             </c:if>
 
@@ -32,7 +32,7 @@
     </div>
 
     <div class="main container">
-        <div id="board" class="ui seven column padded grid">
+        <div id="board" class="ui ten column padded grid">
 
           <c:forEach items="${game.columns}" var="col">
 	          <a href="?playcol=${col.index}" class="blue column">
