@@ -16,9 +16,12 @@ public class CheckersGameImpl implements CheckersGame {
     public static final String CASE_EMPTY = "The case you picked is empty";
     public static final String CASE_NOT_EMPTY= "The case you picked is not empty";
     public static final String WRONG_WAY= "You're going the wrong way";
+    public static final String WRONG_PLAYER= "It's not your turn";
     
     private ChipColour winner = ChipColour.NULL;
-
+    private ChipColour playerTurn = ChipColour.WHITE;
+    
+    
     List<List<ChipColour>> board = new ArrayList<>();
 
     public CheckersGameImpl() {
@@ -51,17 +54,13 @@ public class CheckersGameImpl implements CheckersGame {
                 row.add(cell);
             }
             this.board.add(row);
-        }
-        
-        
+        }   
     }
     
     private boolean hasPawnAtInit(int row, int col) {
         Boolean response = false;
-
         Integer rowModule = row % 2;
         Integer colModule = col % 2;
-
         if (rowModule == 0) {
             if (colModule != 0) {
                 response = true;
@@ -71,7 +70,6 @@ public class CheckersGameImpl implements CheckersGame {
                response = true;
             }
         }
-
         return response;
     }
 
@@ -87,6 +85,9 @@ public class CheckersGameImpl implements CheckersGame {
         if(currentPlayer == ChipColour.NULL){
         	throw new GameException(CASE_EMPTY);
         }else{
+        	if(currentPlayer != playerTurn){
+        		throw new GameException(WRONG_PLAYER);
+        	}
         	ChipColour destCase = this.getCell( destColumn, destRow);
         	if(destCase != ChipColour.NULL){
         		throw new GameException(CASE_NOT_EMPTY);
@@ -97,10 +98,19 @@ public class CheckersGameImpl implements CheckersGame {
         		playWhite(srcColumn, srcRow,  destColumn,  destRow);
         	}
         }
+        changePlayerTurn();
     }
 
     
-    //Going Down
+    private void changePlayerTurn() {
+        if(this.playerTurn == ChipColour.WHITE){
+        	this.playerTurn = ChipColour.BLACK;	
+        }else{
+        	this.playerTurn = ChipColour.WHITE;	
+        }
+	}
+
+	//Going Down
     public void playBlack(int srcColumn, int srcRow, int  destColumn, int  destRow){
     	if(destRow < srcRow){
     		throw new GameException(WRONG_WAY);
