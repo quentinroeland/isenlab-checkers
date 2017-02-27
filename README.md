@@ -1,31 +1,45 @@
-# Puissance4
+# ISEN LAB : Checkers game
 
-[![Build Status](https://travis-ci.org/dmetzler/puissance4.png?branch=master)](https://travis-ci.org/dmetzler/puissance4)
-[![Coverage Status](https://coveralls.io/repos/dmetzler/puissance4/badge.svg)](https://coveralls.io/r/dmetzler/puissance4)
+## Getting started
 
-This is a simple JEE6 power4 game made to illustrate various aspects of JEE :
+### Requis
 
- * TDD thru with Junit and AssertJ
- * Servlet, JSP 
- * CDI
- * JPA
- * JAX-RS
- 
+* Java 8
+* Maven
+* Glassfish plugin (optional)
 
-## How to launch
+### Content
 
-	$ mvn clean install
-	$ cd puissance4-web
-	$ mvn glassfish:run
-
-It launches a Glassfish server on port 9090, so your application can be browsed at : 
-
-	http://localhost:9090/puissance4-web/
-
-Or copy the `puissance4-web/target/puissance4.war` in your application server's webapp directory.
+* checkers-parents
+** checkers-core
+** checkers-jpa
+** checkers-rest
+** checkers-web
 
 
-## How to play
+## How to
+
+### Get source
+
+Sources are available on our git repository
+
+	https://github.com/quentinroeland/isenlab-checkers
+
+
+### Lauch
+
+In a command prompt :
+
+cd checkers-parents
+mvn clean install
+cd checkers-web
+mvn glassfish:run
+
+It launches a Glassfish server on port 9090, the application can be browsed at : 
+
+	http://localhost:9090/checkers-web/
+
+### Play
 
 To move a pawn click on the pawn to move, then click on the destination case.
 Then click on the play button.
@@ -35,3 +49,5 @@ Only the simple rules have been implemented :
 * Move pawn
 * Take neighbor
 * The game is won when one pawn get to the other side 
+
+Note : **Player** with **yellow** pawns **starts** to play
