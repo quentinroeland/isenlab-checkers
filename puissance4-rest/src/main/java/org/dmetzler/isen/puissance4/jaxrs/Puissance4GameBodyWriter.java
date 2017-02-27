@@ -62,13 +62,13 @@ public class Puissance4GameBodyWriter implements
         jg.writeFieldName("row");
         jg.writeStartArray();
 
-        for(int i=0; i < game.getColumnsNumber(); i ++) {
+        for(int i=0; i < game.getRowsNumber(); i ++) {
             jg.writeStartObject();
 
             jg.writeFieldName("cols");
             jg.writeStartArray();
-            for(int j=0; j < game.getRowsNumber(); j ++) {
-                ChipColour cell = game.getCell(i,j);
+            for(int j=0; j < game.getColumnsNumber(); j ++) {
+                ChipColour cell = game.getCell(j,i);
                 jg.writeString(cell != null ? cell.toString() : "");
             }
             jg.writeEndArray();
