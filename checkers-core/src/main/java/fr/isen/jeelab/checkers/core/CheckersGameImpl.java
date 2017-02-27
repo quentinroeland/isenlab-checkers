@@ -13,6 +13,8 @@ public class CheckersGameImpl implements CheckersGame {
     public static final String CASE_NOT_EMPTY= "The case you picked is not empty";
     public static final String WRONG_WAY= "You're going the wrong way";
     public static final String WRONG_PLAYER= "It's not your turn";
+    public static final String GAME_FINISHED= "The game is over start a new one";
+    
     
     private ChipColour winner = ChipColour.NULL;
     private ChipColour playerTurn = ChipColour.WHITE;
@@ -72,6 +74,9 @@ public class CheckersGameImpl implements CheckersGame {
 
     @Override
     public void play(int srcColumn, int srcRow, int destColumn, int destRow) {
+    	if(this.getWinner() != ChipColour.NULL){
+    		throw new GameException(GAME_FINISHED);
+        }
         if (srcColumn > getColumnsNumber() - 1 || srcRow > getRowsNumber() -1 ||
         	destColumn > getColumnsNumber() -1 || destRow > getRowsNumber() -1 )
         {
