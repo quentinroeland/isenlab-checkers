@@ -42,6 +42,22 @@ public class CheckersGameTest {
     	assertThat(game.getCell(0, 3)).isEqualTo(ChipColour.WHITE);    	
     	
     }
+    
+    
+    @Test
+    public void gameWon() throws Exception{
+    	assertThat(game.getWinner()).isEqualTo(ChipColour.NULL);
+    	//TODO move to win
+    	for(int i = 0 ; i < game.getRowsNumber(); i++){
+    		for(int j = 0 ; j < game.getColumnsNumber(); j++){
+        		game.setCell(j, i, ChipColour.NULL);
+        	}
+    	}
+    	game.setCell(2, 1, ChipColour.BLACK);
+    	game.setCell(3, 2, ChipColour.WHITE);
+    	game.play(3, 2, 1, 0);
+    	assertThat(game.getWinner()).isEqualTo(ChipColour.WHITE);
+    }
 
 
 }

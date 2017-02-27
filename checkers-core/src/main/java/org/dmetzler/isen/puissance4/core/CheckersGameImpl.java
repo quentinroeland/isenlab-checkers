@@ -17,6 +17,7 @@ public class CheckersGameImpl implements CheckersGame {
     public static final String CASE_NOT_EMPTY= "The case you picked is not empty";
     public static final String WRONG_WAY= "You're going the wrong way";
     
+    private ChipColour winner = ChipColour.NULL;
 
     List<List<ChipColour>> board = new ArrayList<>();
 
@@ -123,6 +124,10 @@ public class CheckersGameImpl implements CheckersGame {
     	}
     	
     	//TODO prise complexe (plus qu'un pion)
+    	
+    	if(destRow == this.ROWS_NUMBER -1 ){
+    		this.winner = ChipColour.BLACK;
+    	}
     }
     
     //Going UP
@@ -147,6 +152,10 @@ public class CheckersGameImpl implements CheckersGame {
     	}
     	
     	//TODO prise complexe (plus qu'un pion)
+    	
+    	if(destRow == 0 ){
+    		this.winner = ChipColour.WHITE;
+    	}
     }
     
     @Override
@@ -158,6 +167,7 @@ public class CheckersGameImpl implements CheckersGame {
         return colIndex < row.size() && colIndex >= 0 ? row.get(colIndex) : null;
     }
     
+    @Override
     public void setCell(int colIndex , int rowIndex, ChipColour cp){
     	List<ChipColour> row = board.get(rowIndex);
         row.set(colIndex, cp);
@@ -175,83 +185,7 @@ public class CheckersGameImpl implements CheckersGame {
 
     @Override
     public ChipColour getWinner() {
-
-        for (int i = 0; i < getColumnsNumber(); i++) {
-            for (int j = 0; j < getRowsNumber(); j++) {
-                if (getCell(i, j) != null) {
-                    if (isWinningPosition(i, j)) {
-                        return getCell(i, j);
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    private boolean isWinningPosition(int i, int j) {
-        if(getCell(i,j) == null) {
-            return false;
-        }
-        return isVerticalWinningPosition(i, j) ||
-                isDiagonalWinningPosition(i, j) ||
-                isHorizontalWinningPosition(i, j);
-    }
-
-    private boolean isDiagonalWinningPosition(int i, int j) {
-        return isDiagonalWinningPosition(i, j, true) ||
-                isDiagonalWinningPosition(i, j, false);
-    }
-
-    private boolean isHorizontalWinningPosition(int i, int j) {
-        if (isFirstChipTooRightToWin(i)) {
-            return false;
-        }
-
-        ChipColour cell = getCell(i, j);
-        boolean result = true;
-        for (int k = 1; result == true && k < NUMBER_OF_CHIP_TO_ALIGN ; k++) {
-            result = result && cell == getCell(i + k, j);
-        }
-        return result;
-    }
-
-    private boolean isDiagonalWinningPosition(int i, int j, boolean direction) {
-        if (isFisrtChipTooHighToWin(j)) {
-            return false;
-        }
-
-        if((!direction && i <= NUMBER_OF_CHIP_TO_ALIGN) || isFirstChipTooRightToWin(i)) {
-            return false;
-        }
-        ChipColour cell = getCell(i, j);
-        boolean result = true;
-        for (int k = 1; result == true && k < NUMBER_OF_CHIP_TO_ALIGN ; k++) {
-            int sign = direction ? 1 : -1;
-            result = result && cell == getCell(i + k * sign, j + k * sign);
-        }
-        return result;
-    }
-
-    private boolean isFirstChipTooRightToWin(int i) {
-        return (i> getColumnsNumber() - NUMBER_OF_CHIP_TO_ALIGN);
-    }
-
-    private boolean isVerticalWinningPosition(int i, int j) {
-        if (isFisrtChipTooHighToWin(j)) {
-            return false;
-        }
-
-        ChipColour cell = getCell(i, j);
-        boolean result = true;
-        for (int k = 1; result == true && k < NUMBER_OF_CHIP_TO_ALIGN ; k++) {
-            result = result && cell == getCell(i, j + k);
-        }
-        return result;
-
-    }
-
-    private boolean isFisrtChipTooHighToWin(int j) {
-        return j > getRowsNumber() - NUMBER_OF_CHIP_TO_ALIGN;
+        return this.winner;
     }
 
     @Override

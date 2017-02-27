@@ -40,5 +40,13 @@ public interface CheckersGame {
      * @return
      */
     ChipColour getWinner();
+    
+    /**
+     * 
+     * @param colIndex
+     * @param rowIndex
+     * @param cp
+     */
+    void setCell(int colIndex, int rowIndex , ChipColour cp);
 
 }
