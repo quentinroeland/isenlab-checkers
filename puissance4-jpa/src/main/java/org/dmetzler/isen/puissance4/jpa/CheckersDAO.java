@@ -11,7 +11,7 @@ import javax.transaction.UserTransaction;
 
 import org.apache.commons.lang.RandomStringUtils;
 
-public class Puissance4DAO {
+public class CheckersDAO {
 
     @Inject
     EntityManager em;
@@ -19,7 +19,7 @@ public class Puissance4DAO {
     @Inject
     UserTransaction ut;
 
-    public Puissance4Adapter createNewGame() {
+    public CheckersAdapter createNewGame() {
 
         Game game = new Game();
         game.setToken(RandomStringUtils.randomAlphanumeric(10).toLowerCase());
@@ -33,15 +33,15 @@ public class Puissance4DAO {
                 | HeuristicMixedException | HeuristicRollbackException e) {
             return null;
         }
-        return new Puissance4Adapter(this, game);
+        return new CheckersAdapter(this, game);
     }
 
-    public Puissance4Adapter loadFromToken(String token) {
+    public CheckersAdapter loadFromToken(String token) {
         Game game = (Game) em
                 .createQuery("SELECT g FROM Game g WHERE g.token = :token")
                 .setParameter("token", token).getSingleResult();
 
-        return new Puissance4Adapter(this, game);
+        return new CheckersAdapter(this, game);
     }
 
     public void save(Game game) {

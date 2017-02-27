@@ -11,23 +11,23 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import org.dmetzler.isen.puissance4.jpa.Puissance4Adapter;
+import org.dmetzler.isen.puissance4.jpa.CheckersAdapter;
 
-public class Puissance4GameResource {
+public class CheckersGameResource {
 
 
     @Context
     UriInfo info;
 
-    private Puissance4Adapter game;
+    private CheckersAdapter game;
 
-    public Puissance4GameResource(Puissance4Adapter game) {
+    public CheckersGameResource(CheckersAdapter game) {
         this.game = game;
     }
 
 
     @GET
-    public Puissance4Adapter  doGet() throws IOException {
+    public CheckersAdapter  doGet() throws IOException {
         return game;
     }
 

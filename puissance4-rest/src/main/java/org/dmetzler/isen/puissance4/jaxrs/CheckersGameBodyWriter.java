@@ -15,7 +15,7 @@ import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 
 import org.dmetzler.isen.puissance4.core.ChipColour;
-import org.dmetzler.isen.puissance4.jpa.Puissance4Adapter;
+import org.dmetzler.isen.puissance4.jpa.CheckersAdapter;
 
 import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonFactory;
@@ -23,8 +23,8 @@ import com.fasterxml.jackson.core.JsonGenerator;
 
 @Provider
 @Produces({"application/json","*/*"})
-public class Puissance4GameBodyWriter implements
-        MessageBodyWriter<Puissance4Adapter> {
+public class CheckersGameBodyWriter implements
+        MessageBodyWriter<CheckersAdapter> {
 
     @Context
     UriInfo info;
@@ -33,17 +33,17 @@ public class Puissance4GameBodyWriter implements
     @Override
     public boolean isWriteable(Class<?> type, Type genericType,
             Annotation[] annotations, MediaType mediaType) {
-        return type.equals(Puissance4Adapter.class);
+        return type.equals(CheckersAdapter.class);
     }
 
     @Override
-    public long getSize(Puissance4Adapter t, Class<?> type,
+    public long getSize(CheckersAdapter t, Class<?> type,
             Type genericType, Annotation[] annotations, MediaType mediaType) {
         return 0;
     }
 
     @Override
-    public void writeTo(Puissance4Adapter game, Class<?> type,
+    public void writeTo(CheckersAdapter game, Class<?> type,
             Type genericType, Annotation[] annotations, MediaType mediaType,
             MultivaluedMap<String, Object> httpHeaders,
             OutputStream entityStream) throws IOException,

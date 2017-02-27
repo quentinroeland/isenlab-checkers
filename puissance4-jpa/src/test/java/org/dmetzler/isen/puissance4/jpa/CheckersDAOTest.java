@@ -14,13 +14,13 @@ import org.junit.runner.RunWith;
 
 @RunWith(GuiceRunner.class)
 @Modules({ H2DBModule.class, JPAModule.class })
-public class Puissance4DAOTest {
+public class CheckersDAOTest {
 
     @Inject
     EntityManager em;
 
     @Inject
-    Puissance4DAO dao;
+    CheckersDAO dao;
 
     @Test
     public void daoIsInjected() throws Exception {
@@ -29,7 +29,7 @@ public class Puissance4DAOTest {
 
     @Test
     public void itCanCreateAGame() throws Exception {
-        Puissance4Adapter game = dao.createNewGame();
+        CheckersAdapter game = dao.createNewGame();
         assertThat(game).isNotNull();
 
         String token = game.getToken();

@@ -6,12 +6,12 @@ import java.util.List;
 import org.dmetzler.isen.puissance4.core.ChipColour;
 import org.dmetzler.isen.puissance4.core.CheckersGame;
 
-public class Puissance4Column {
+public class CheckersColumn {
 
     private int index;
     private CheckersGame game;
 
-    public Puissance4Column(int i, CheckersGame game) {
+    public CheckersColumn(int i, CheckersGame game) {
         this.index = i;
         this.game = game;
     }

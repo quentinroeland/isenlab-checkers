@@ -7,15 +7,15 @@ import org.dmetzler.isen.puissance4.core.GameException;
 import org.dmetzler.isen.puissance4.core.CheckersGame;
 import org.dmetzler.isen.puissance4.core.CheckersGameImpl;
 
-public class Puissance4Adapter implements CheckersGame {
+public class CheckersAdapter implements CheckersGame {
 
     private Game game;
 
     private CheckersGame coreGame;
 
-    private Puissance4DAO dao;
+    private CheckersDAO dao;
 
-    public Puissance4Adapter(Puissance4DAO dao, Game game) {
+    public CheckersAdapter(CheckersDAO dao, Game game) {
         this.dao = dao;
         this.game = game;
         this.coreGame = new CheckersGameImpl();

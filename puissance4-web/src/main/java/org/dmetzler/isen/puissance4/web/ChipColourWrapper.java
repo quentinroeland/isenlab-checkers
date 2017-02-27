@@ -16,7 +16,7 @@ public class ChipColourWrapper {
         } else if(ChipColour.BLACK ==cell) {
             return "BLACK";
         } else {
-            return "";
+            return "NULL";
         }
     }
 

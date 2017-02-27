@@ -19,7 +19,7 @@ public class GameServlet extends HttpServlet {
     private static final long serialVersionUID = 4590295895653754427L;
 
     @Inject
-    Puissance4Bean game;
+    CheckersBean game;
 
     private static final Log LOG = LogFactory.getLog(GameServlet.class);
 

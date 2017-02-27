@@ -11,24 +11,24 @@ import javax.inject.Named;
 import org.dmetzler.isen.puissance4.core.ChipColour;
 import org.dmetzler.isen.puissance4.core.CheckersGame;
 import org.dmetzler.isen.puissance4.core.CheckersGameImpl;
-import org.dmetzler.isen.puissance4.jpa.Puissance4Adapter;
-import org.dmetzler.isen.puissance4.jpa.Puissance4DAO;
+import org.dmetzler.isen.puissance4.jpa.CheckersAdapter;
+import org.dmetzler.isen.puissance4.jpa.CheckersDAO;
 
 @Named("game")
 @RequestScoped
-public class Puissance4Bean implements Serializable {
+public class CheckersBean implements Serializable {
 
-    Puissance4Adapter game ;
+    CheckersAdapter game ;
 
     @Inject
-    Puissance4DAO dao;
+    CheckersDAO dao;
 
 
-    public List<Puissance4Column> getColumns() {
+    public List<CheckersColumn> getColumns() {
 
-        List<Puissance4Column> cols = new ArrayList<>();
+        List<CheckersColumn> cols = new ArrayList<>();
         for (int i = 0; i < game.getColumnsNumber(); i++) {
-            cols.add(new Puissance4Column(i, game));
+            cols.add(new CheckersColumn(i, game));
         }
         return cols;
 

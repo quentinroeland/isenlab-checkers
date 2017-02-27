@@ -12,16 +12,16 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 
-import org.dmetzler.isen.puissance4.jpa.Puissance4Adapter;
-import org.dmetzler.isen.puissance4.jpa.Puissance4DAO;
+import org.dmetzler.isen.puissance4.jpa.CheckersAdapter;
+import org.dmetzler.isen.puissance4.jpa.CheckersDAO;
 
 @Path("/")
 @Produces({ "application/json", "*/*" })
 @RequestScoped
-public class Puissance4API {
+public class CheckersAPI {
 
     @Inject
-    Puissance4DAO dao;
+    CheckersDAO dao;
 
     @Context
     HttpServletRequest request;
@@ -31,7 +31,7 @@ public class Puissance4API {
 
     @GET
     public Response doGet() {
-        Puissance4Adapter game = dao.createNewGame();
+        CheckersAdapter game = dao.createNewGame();
         return Response
                 .status(Response.Status.SEE_OTHER)
                 .header(HttpHeaders.LOCATION,
@@ -41,7 +41,7 @@ public class Puissance4API {
 
     @Path("{gameToken}")
     public Object getGame(@PathParam("gameToken") String token) {
-        Puissance4Adapter game = dao.loadFromToken(token);
-        return rc.initResource(new Puissance4GameResource(game));
+        CheckersAdapter game = dao.loadFromToken(token);
+        return rc.initResource(new CheckersGameResource(game));
     }
 }
