@@ -31,6 +31,7 @@ To move a pawn click on the pawn to move, then click on the destination case.
 Then click on the play button.
 
 Only the simple rules have been implemented :
-	* Move pawn
-	* Take neighbor
-	* The game is won when one pawn get to the other side 
+
+* Move pawn
+* Take neighbor
+* The game is won when one pawn get to the other side 
