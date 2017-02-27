@@ -4,9 +4,9 @@
 
 
   <groupId>org.dmetzler.isen.puissance4</groupId>
-  <artifactId>puissance4-parent</artifactId>
+  <artifactId>checkers-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>Puissance 4 :: parent</name>
+  <name>Checkers :: parent</name>
   <packaging>pom</packaging>
   <description></description>
 
@@ -18,10 +18,10 @@
   </properties>
 
   <modules>
-    <module>puissance4-core</module>
-    <module>puissance4-jpa</module>
-    <module>puissance4-web</module>
-    <module>puissance4-rest</module>
+    <module>checkers-core</module>
+    <module>checkers-jpa</module>
+    <module>checkers-web</module>
+    <module>checkers-rest</module>
   </modules>
 
 

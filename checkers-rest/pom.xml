@@ -4,13 +4,13 @@
 
   <parent>
     <groupId>org.dmetzler.isen.puissance4</groupId>
-    <artifactId>puissance4-parent</artifactId>
+    <artifactId>checkers-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
 
-  <artifactId>puissance4-rest</artifactId>
-  <name>Puissance 4 :: REST API</name>
+  <artifactId>checkers-rest</artifactId>
+  <name>Checkers :: REST API</name>
 
   <dependencies>
 
