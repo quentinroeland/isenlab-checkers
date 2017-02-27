@@ -35,7 +35,9 @@
                 <p>Simple Checkers app that makes use of JEE servlets</p>
             </div>
 
-              <div ng-show="game.winner != 'NULL'" id="winner" ng-class="{massive:true, circular:true, ui:true, blackpawn:game.winner=='BLACK', blackpawn:game.winner=='WHITE', icon:true,  button:true}">WINS</div>
+              <div ng-show="game.winner != 'NULL'" id="winner" ng-class="{massive:true, circular:true, ui:true, icon:true,  button:true}">
+               {{game.winner}} WON
+              </div>
 
 
         </div>

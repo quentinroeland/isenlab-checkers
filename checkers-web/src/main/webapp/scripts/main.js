@@ -18,23 +18,23 @@ angular.module('puissance4AngularApp', [])
 	  
     $scope.play = function(srcRow, srcCol, destRow, destCol) {
   	  $http({url:apiEndpoint+$scope.game.token+"/"+srcCol +"/"+srcRow+"/"+destCol+"/"+destRow,
-  		    method:'POST'}).success(
-  		      function(data) {
-  		    	  $scope.game=data;
+  		    method:'POST'}).then(function success(response) {
+  		    	  $scope.game=response.data;
+  		    	  $scope.cancelMove();
+  		      }, function error(response){
+  		    	  alert("Error : mouvement not possible");
+  		    	  console.log(response);
   		      });
     };
     
     $scope.cellClick = function(row, col) {
     	if($scope.srcRow == undefined){
     		$scope.srcRow = row;
-    		$scope.srcCol = col;
-        	console.log("set src");    		
+    		$scope.srcCol = col;		
     	}else{
     		$scope.destRow = row;
     		$scope.destCol = col;
-        	console.log("set dist");
     	}
-    	console.log("cell clicked");
 	};
 	
 	$scope.playMove = function(){
@@ -48,5 +48,10 @@ angular.module('puissance4AngularApp', [])
 		$scope.destCol = undefined;
 	};
 	
+	
+	$scope.resetGame = function() {
+		var redirectUrl = $location.absUrl().split("g/" + $scope.urlToken);
+		window.location.href = redirectUrl[0];
+	}
 
   }]) ;
