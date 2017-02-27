@@ -28,5 +28,6 @@ target
 *.gpd.*
 *cpJar*
 derby.log
+puissance4-web/derbi.log
 dependency-tree.log
 build.properties

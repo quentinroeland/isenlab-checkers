@@ -3,32 +3,25 @@
   <modelVersion>4.0.0</modelVersion>
 
 
-  <groupId>fr.isen.checkers</groupId>
-  <artifactId>jee-checkers-parent</artifactId>
+  <groupId>fr.isen.jeelab.checkers</groupId>
+  <artifactId>checkers-parent</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>compile</scope>
-    </dependency>
-  </dependencies>
   <name>Checkers :: parent</name>
   <packaging>pom</packaging>
   <description></description>
 
 
   <properties>
-    <java.version>1.8</java.version>
+    <java.version>1.7</java.version>
     <jee.version>7.0</jee.version>
     <selenium.version>2.44.0</selenium.version>
   </properties>
 
   <modules>
-    <module>jee-checkers-core</module>
-    <!-- module>jee-bootstrap-jpa</module>
-    <module>jee-bootstrap-web</module>
-    <module>jee-bootstrap-rest</module -->
+    <module>checkers-core</module>
+    <module>checkers-jpa</module>
+    <module>checkers-web</module>
+    <module>checkers-rest</module>
   </modules>
 
 
@@ -43,6 +36,11 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
           </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.eluder.coveralls</groupId>
+          <artifactId>coveralls-maven-plugin</artifactId>
+          <version>3.0.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -94,7 +92,7 @@
       <dependency>
         <groupId>org.assertj</groupId>
         <artifactId>assertj-core</artifactId>
-        <version>3.6.1</version>
+        <version>1.7.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -145,7 +143,6 @@
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
         <version>3.0</version>
-        <scope>test</scope>
       </dependency>
 
       <dependency>
@@ -211,21 +208,21 @@
       </dependency>
 
       <dependency>
-        <groupId>fr.isen.jee-checkers</groupId>
-        <artifactId>jee-checkers-core</artifactId>
+        <groupId>fr.isen.jeelab.checkers</groupId>
+        <artifactId>checkers-core</artifactId>
         <version>${project.version}</version>
       </dependency>
-      <!-- dependency>
-        <groupId>org.dmetzler.isen.jee-bootstrap</groupId>
-        <artifactId>jee-bootstrap-jpa</artifactId>
+      <dependency>
+        <groupId>fr.isen.jeelab.checkers</groupId>
+        <artifactId>checkers-jpa</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
-        <groupId>org.dmetzler.isen.jee-bootstrap</groupId>
-        <artifactId>jee-bootstrap-rest</artifactId>
+        <groupId>fr.isen.jeelab.checkers</groupId>
+        <artifactId>checkers-rest</artifactId>
         <version>${project.version}</version>
-      </dependency-->
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
