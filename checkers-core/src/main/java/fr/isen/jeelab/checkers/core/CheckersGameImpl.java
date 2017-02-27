@@ -2,7 +2,6 @@ package fr.isen.jeelab.checkers.core;
 
 import java.util.ArrayList;
 import java.util.List;
-import fr.isen.jeelab.checkers.*;
 
 public class CheckersGameImpl implements CheckersGame {
 
@@ -203,11 +202,11 @@ public class CheckersGameImpl implements CheckersGame {
             sb.append("|");
             for (int j = 0; j < getColumnsNumber(); j++) {
                 if (getCell(j, i) == ChipColour.WHITE) {
-                    sb.append("O");
+                    sb.append("W");
                 } else if (getCell(j, i) == ChipColour.BLACK) {
-                    sb.append("X");
+                    sb.append("B");
                 } else {
-                    sb.append(" ");
+                    sb.append("_");
                 }
                 sb.append("|");
             }
