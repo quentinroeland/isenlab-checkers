@@ -23,3 +23,14 @@ It launches a Glassfish server on port 9090, so your application can be browsed 
 	http://localhost:9090/puissance4-web/
 
 Or copy the `puissance4-web/target/puissance4.war` in your application server's webapp directory.
+
+
+## How to play
+
+To move a pawn click on the pawn to move, then click on the destination case.
+Then click on the play button.
+
+Only the simple rules have been implemented :
+	* Move pawn
+	* Take neighbor
+	* The game is won when one pawn get to the other side 
