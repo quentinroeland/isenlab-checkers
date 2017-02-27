@@ -35,7 +35,7 @@ public class Puissance4GameResource {
     @POST
     @Path("{srcCol}/{srcRow}/{destCol}/{destRow}/")
     public Response playColumn(@PathParam("srcCol") int srcCol, @PathParam("srcRow") int srcRow,@PathParam("destCol") int destCol, @PathParam("destRow") int destRow ) throws IOException {
-        game.play(game.getCurrentTurn(), srcCol, srcRow,destCol, destRow);
+        game.play( srcCol, srcRow,destCol, destRow);
         return Response
                 .status(Response.Status.SEE_OTHER)
                 .header(HttpHeaders.LOCATION,

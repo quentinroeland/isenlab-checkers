@@ -35,7 +35,7 @@ public class Puissance4Bean implements Serializable {
     }
 
     public void play(int srcCol, int srcRow, int destCol, int destRow) {
-        game.play(game.getCurrentTurn(), srcCol, srcRow, destCol, destRow);
+        game.play(srcCol, srcRow, destCol, destRow);
 
     }
 
