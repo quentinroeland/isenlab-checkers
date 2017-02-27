@@ -31,5 +31,22 @@
 }
 
 #board {
-    width: 600px;
+    width: 450px;
+}
+
+.ui.grid>.row{
+	padding:3px 3px !important;
+}
+
+
+.blackpawn{
+	bakcground-color: #000000 !important;
+}
+
+.whitepawn{
+	bakcground-color: #e8e5ab !important;
+}
+
+.empty-pawn{
+	bakcground-color: #E0E0E0;
 }

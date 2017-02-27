@@ -35,20 +35,26 @@
                 <p>Simple Checkers app that makes use of JEE servlets</p>
             </div>
 
-              <div ng-show="game.winner != 'NULL'" id="winner" ng-class="{massive:true, circular:true, ui:true, red:game.winner=='RED', yellow:game.winner=='YELLOW', icon:true,  button:true}">WINS</div>
+              <div ng-show="game.winner != 'NULL'" id="winner" ng-class="{massive:true, circular:true, ui:true, blackpawn:game.winner=='BLACK', blackpawn:game.winner=='WHITE', icon:true,  button:true}">WINS</div>
 
 
         </div>
     </div>
 
     <div class="main container">
-      <div id="board" class="ui ten column padded grid">
-          <a ng-repeat="col in game.cols" ng-click="play(col)" class="blue column">
-
-            <div ng-repeat="cell in col.cells.slice() track by $index" ng-class="{massive:true, circular:true, ui:true, icon:true, black:cell=='BLACK', white:cell=='WHITE',blue:cell=='NULL' ,  button:true}"></div>
+      <div id="board" class="ui ten row padded grid">
+          <a ng-repeat="r in game.row track by $index" class="blue row">
+            <div ng-repeat="col in r.cols track by $index"  ng-click="cellClick($parent.$index , $index)"
+            ng-class="{massive:true, circular:true, ui:true, icon:true, black:col=='BLACK', yellow:col=='WHITE',  button:true}">
+            </div>
 
           </a>
       </div>
+      
+      <p ng-show="srcRow != undefined")>Move from {{srcRow}} - {{srcCol}} to {{destRow}} - {{destCol}} 
+                  <a ng-click="playMove()" class="ui green button" id="play">Play Move</a>
+                  <a ng-click="cancelMove()" class="ui green button" id="cancel">Cancel Move</a>
+      </p>
       <a ng-click="resetGame()" class="ui red button" id="reset">Reset game</a>
     </div>
 
