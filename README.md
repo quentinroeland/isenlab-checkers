@@ -1,4 +1,4 @@
-# ISEN LAB : Checkers game
+# ISEN LAB : Checkers game  [![Build Status](https://travis-ci.org/quentinroeland/isenlab-checkers.svg?branch=master)](https://travis-ci.org/quentinroeland/isenlab-checkers)
 
 ## Getting started
 
